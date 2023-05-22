@@ -4,12 +4,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class MessageTypes(Enum):
-    text = 'text'
-    image = 'image'
-
-
-
 class ApiRequestPayload(BaseModel):
     recipient: dict
     messaging_type: str = "Response"
