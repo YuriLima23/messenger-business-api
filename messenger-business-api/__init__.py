@@ -2,4 +2,4 @@
 
 __version__ = '0.1.0'
 
-from ..api import WhatsappAPI
+from .api import MessengerAPI
