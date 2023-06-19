@@ -24,7 +24,6 @@ class MessengerAPI:
         return result
 
     def get_media(self, uri: str) -> Optional[Response]:
-        # tratar os outros tipos de midia
         response = requests.get(uri, stream=True)
         response.raise_for_status()
         return response
