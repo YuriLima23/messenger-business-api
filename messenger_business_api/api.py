@@ -1,5 +1,5 @@
 from typing import Dict, Optional
-from requests import Response
+from requests import Response, post, get
 from .execeptions import SendingMessageFailedException
 from .types import ApiRequestPayload
 
@@ -15,15 +15,15 @@ class MessengerAPI:
 
     def send_text_message(self, user_id: str, message):
         payload = ApiRequestPayload(
-            recipient={"id": user_id}, message={"text": message})
+            recipient={"id": user_id}, message={"text": str(message)})
         url = f"{self.base_url}/messages?access_token={self.access_token}"
-        result = requests.post(url, headers=self.headers, data=payload.json())
+        result = post(url, headers=self.headers, data=payload.json())
 
         if result.status_code != 200:
             raise SendingMessageFailedException(result.status_code)
         return result
 
     def get_media(self, uri: str) -> Optional[Response]:
-        response = requests.get(uri, stream=True)
+        response = get(uri, stream=True)
         response.raise_for_status()
         return response

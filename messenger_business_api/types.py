@@ -6,4 +6,4 @@ from pydantic import BaseModel
 class ApiRequestPayload(BaseModel):
     recipient: dict
     messaging_type: str = "Response"
-    message:Optional[str]
+    message:dict
